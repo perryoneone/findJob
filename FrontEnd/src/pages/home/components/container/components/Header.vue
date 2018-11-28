@@ -2,13 +2,20 @@
   <div class="header">
     <div class="search-wrapper">
       <div class="search-box">
-        <form action="/search" method="get" class="search-form" >
-          <input type="text" id="search_input" class="search_input" placeholder="搜索职位、公司或地点" autocomplete="off" maxlength="64" tabindex="1" />
-          <input type="submit" name="" id="search_btn" class="search_btn" value="搜索">
-        </form>
+        <Input prefix="ios-search" class="search_input" placeholder="搜索职位、公司或地点" autocomplete="off" :maxlength="64" />
+        <Input class="search_btn" value="搜索" readonly/>
       </div>
       <div class="guess-wrapper"></div>
-      <div class="hot-search"></div>
+      <dl class="hot-search">
+        <dt>热门搜索：</dt>
+        <dd><a href="#" class="highlight" target="_self">java</a></dd>
+        <dd><a href="#" class="highlight" target="_self">js</a></dd>
+        <dd><a href="#" class="highlight" target="_self">html</a></dd>
+        <dd><a href="#" class="highlight" target="_self">c++</a></dd>
+        <dd><a href="#" class="highlight" target="_self">php</a></dd>
+        <dd><a href="#" class="highlight" target="_self">产品经理</a></dd>
+        <dd><a href="#" class="highlight" target="_self">后端开发</a></dd>
+      </dl>
     </div>
   </div>
 </template>
@@ -34,21 +41,45 @@ export default {
         position: relative
         .search_input
           width: 762px
-          height: 20px
           line-height: 20px
           float: left
-          font-size: 16px
-          padding: 12px 16px
           margin: 0
+        .search_input >>> .ivu-input-prefix
+          left: 3px
+          top: 7px
+        .search_input >>> .ivu-input
+          height: 46px
+          font-size: 16px
           border: 1px solid #E8E8E8
           border-right: 0
+          &:focus
+            border: 1px solid #00b38a
+            border-right: 0
         .search_btn
           float: left
           width: 142px
+        .search_btn >>> .ivu-input
           height: 46px
-          font-size: 18px
+          background-color: #00b38a
           color: #FFF
           border: 0
-          background: #00b38a
+          text-align: center
+          font-size: 18px
           cursor: pointer
+      .hot-search
+        width: 938px
+        height: 22px
+        overflow: hidden
+        margin: 6px auto 0
+        dt
+          float: left
+          margin-right: 10px
+          font-size: 14px
+          color: #777
+        dd
+          float: left
+          margin-right: 20px
+          color: #999
+          a.highlight
+            color: #00b38a
 </style>
