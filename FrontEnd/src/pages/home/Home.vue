@@ -1,15 +1,19 @@
 <template>
   <div>
-    <h1>index</h1>
+    <home-header></home-header>
+    <home-container></home-container>
   </div>
 </template>
 
 <script>
+import HomeHeader from './components/Header'
+import HomeContainer from './components/container/Container'
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {HomeHeader, HomeContainer}
 }
 </script>
 
-<style scoped>
+<style scoped lang="stylus">
 
 </style>
