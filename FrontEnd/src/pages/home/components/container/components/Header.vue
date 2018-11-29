@@ -2,8 +2,8 @@
   <div class="header">
     <div class="search-wrapper">
       <div class="search-box">
-        <Input prefix="ios-search" class="search_input" placeholder="搜索职位、公司或地点" autocomplete="off" :maxlength="64" />
-        <Input class="search_btn" value="搜索" readonly/>
+        <el-input prefix-icon="el-icon-search" v-model="input" placeholder="搜索职位、公司或地点" class="search_input"></el-input>
+        <el-input type="submit" class="search_btn" value="搜索" />
       </div>
       <div class="guess-wrapper"></div>
       <dl class="hot-search">
@@ -22,7 +22,12 @@
 
 <script>
 export default {
-  name: 'ContainerHeader'
+  name: 'ContainerHeader',
+  data () {
+    return {
+      input: ''
+    }
+  }
 }
 </script>
 
@@ -44,10 +49,7 @@ export default {
           line-height: 20px
           float: left
           margin: 0
-        .search_input >>> .ivu-input-prefix
-          left: 3px
-          top: 7px
-        .search_input >>> .ivu-input
+        .search_input >>> input
           height: 46px
           font-size: 16px
           border: 1px solid #E8E8E8
@@ -58,7 +60,7 @@ export default {
         .search_btn
           float: left
           width: 142px
-        .search_btn >>> .ivu-input
+        .search_btn >>> input
           height: 46px
           background-color: #00b38a
           color: #FFF

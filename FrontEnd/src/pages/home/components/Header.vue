@@ -26,8 +26,8 @@
       </ul>
       <div class="nav_r">
         <ul>
-          <router-link to="/login" tag="li"><a href="/login">登陆</a></router-link>
-          <router-link to="/register" tag="li"><a href="/reg">注册</a></router-link>
+          <router-link to="/login" tag="li"><a>登陆</a></router-link>
+          <router-link to="/register" tag="li"><a>注册</a></router-link>
         </ul>
       </div>
     </div>
