@@ -3,7 +3,7 @@
     <div class="search-wrapper">
       <div class="search-box">
         <el-input prefix-icon="el-icon-search" v-model="input" placeholder="搜索职位、公司或地点" class="search_input"></el-input>
-        <el-input type="submit" class="search_btn" value="搜索" />
+        <router-link to="/jobs/list"><el-input type="submit" class="search_btn" value="搜索" /></router-link>
       </div>
       <div class="guess-wrapper"></div>
       <dl class="hot-search">
@@ -26,6 +26,12 @@ export default {
   data () {
     return {
       input: ''
+    }
+  },
+  methods: {
+    handleSearch () {
+      console.log(123)
+      this.$router.push('/jobs/list')
     }
   }
 }
@@ -57,6 +63,8 @@ export default {
           &:focus
             border: 1px solid #00b38a
             border-right: 0
+        .search_input >>> .el-input__inner
+          border-radius: 0
         .search_btn
           float: left
           width: 142px
@@ -68,6 +76,10 @@ export default {
           text-align: center
           font-size: 18px
           cursor: pointer
+          &:hover
+            background-color: #00a57f
+        .search_btn >>> .el-input__inner
+          border-radius: 0
       .hot-search
         width: 938px
         height: 22px

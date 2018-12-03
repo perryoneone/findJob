@@ -9,9 +9,10 @@
                 <h2>请填写基本信息</h2>
                 <el-upload
                   class="avatar-uploader"
-                  action="https://jsonplaceholder.typicode.com/posts/"
+                  :action="uploadUrl()"
                   :show-file-list="false"
                   :on-success="handleAvatarSuccess"
+                  :on-error="uploadError"
                   :before-upload="beforeAvatarUpload">
                   <img v-if="imageUrl" :src="imageUrl" class="avatar">
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -38,9 +39,6 @@
                     <el-option label="大专" value="大专"></el-option>
                     <el-option label="本科" value="本科"></el-option>
                   </el-select>
-                </el-form-item>
-                <el-form-item label="" prop="email" style="margin-top: 30px;">
-                  <el-input v-model="ruleForm.email" placeholder="请填写联系邮箱"></el-input>
                 </el-form-item>
                 <el-form-item prop="career" style="margin-top: 30px;">
                   <el-radio-group v-model="ruleForm.career">
@@ -192,8 +190,8 @@ export default {
       graduationTime: '', // 毕业时间
       schoolName: '', // 学习名称
       educationPage: false,
-      personPage: false,
-      cardPage: true,
+      personPage: true,
+      cardPage: false,
       dynamicTags: [],
       inputVisible: false,
       personTag: '',
@@ -223,7 +221,7 @@ export default {
       rules: {
         name: [
           { required: true, message: '请填写用户名', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'change' }
         ],
         birthday: [
           { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
@@ -235,7 +233,7 @@ export default {
           { required: true, message: '请选择城市', trigger: 'change' }
         ],
         email: [
-          { required: true, message: '请填写邮箱', trigger: 'blur' }
+          { required: true, message: '请填写邮箱', trigger: 'change' }
         ],
         career: [
           { required: true, message: '请选择你的职业', trigger: 'change' }
@@ -275,6 +273,14 @@ export default {
   methods: {
     handleResize () {
       this.height = document.documentElement.clientHeight + 'px'
+    },
+    uploadUrl () {
+      var url = 'http://localhost:8081/#/' // 生产环境和开发环境的判断
+      return url
+    },
+    uploadError () {
+      this.$message.error('上传失败，请重新上传')
+      // this.showNoticeUploading = false
     },
     handleAvatarSuccess (res, file) {
       this.imageUrl = URL.createObjectURL(file.raw)

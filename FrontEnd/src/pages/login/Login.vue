@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" :style="{height: height}">
     <div class="header">
       <a href="/" class="logo"></a>
     </div>
@@ -8,14 +8,14 @@
         <div class="form_content">
           <div class="form_head">
             <ul class="form_head clearfix">
-              <li class="active">密码登陆</li>
+              <li class="active">邮箱登陆</li>
             </ul>
             <span class="tab_active"></span>
           </div>
           <div class="form_body">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm" style="margin-top: 40px;">
-              <el-form-item label="" prop="name">
-                <el-input v-model="ruleForm.name" placeholder="请输入常用手机号/邮箱"></el-input>
+              <el-form-item label="" prop="email">
+                <el-input v-model="ruleForm.email" placeholder="请输入邮箱"></el-input>
               </el-form-item>
               <el-form-item label="" prop="password" style="margin-top: 40px;">
                 <el-input v-model="ruleForm.password" placeholder="请输入密码" type="password"></el-input>
@@ -46,13 +46,12 @@ export default {
     return {
       height: document.documentElement.clientHeight + 'px',
       ruleForm: {
-        name: '',
+        email: '',
         password: ''
       },
       rules: {
-        name: [
-          { required: true, message: '请输入已验证手机/邮箱', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        email: [
+          { required: true, message: '请输入已验证邮箱', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
